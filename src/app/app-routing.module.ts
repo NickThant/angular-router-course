@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { AboutComponent } from "./about/about.component";
 import { LoginComponent } from "./login/login.component";
 import { NgModule, Component } from "@angular/core";
@@ -9,6 +10,7 @@ import {
 } from "@angular/router";
 
 const routes: Routes = [
+  
   {
     path: "courses",
     loadChildren: () =>
@@ -21,6 +23,15 @@ const routes: Routes = [
   {
     path: "about",
     component: AboutComponent,
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
+  },
+  {
+    path: "",
+    redirectTo: "/courses",
+    pathMatch: "full",
   },
 ];
 
