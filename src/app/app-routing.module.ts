@@ -8,6 +8,7 @@ import {
   PreloadAllModules,
   UrlSerializer,
 } from "@angular/router";
+import { CanLoadAuthGuard } from "./services/can-load-auth.guard";
 
 const routes: Routes = [
   
@@ -15,6 +16,7 @@ const routes: Routes = [
     path: "courses",
     loadChildren: () =>
       import("./courses/courses.module").then((m) => m.CoursesModule),
+    canLoad: [CanLoadAuthGuard]
   },
   {
     path: "login",
@@ -38,6 +40,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [],
+  providers: [CanLoadAuthGuard],
 })
 export class AppRoutingModule {}
